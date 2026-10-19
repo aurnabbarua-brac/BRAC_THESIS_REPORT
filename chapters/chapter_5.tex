@@ -1,0 +1,77 @@
+\section{Conclusion}
+
+This research developed an explainable transfer learning framework for automated skin condition classification and severity estimation. The framework combines deep learning-based image classification with Gradient-weighted Class Activation Mapping (Grad-CAM) to provide predictions alongside visual explanations of the image regions influencing those predictions. The primary objective was to investigate the classification performance, computational efficiency, and interpretability of different transfer learning architectures for skin image analysis.
+
+A complete image preprocessing pipeline was implemented to support dataset preparation, image resizing, metadata generation, dataset partitioning, and data augmentation. Three pre-trained convolutional neural network architectures—EfficientNetB0, MobileNetV2, and ResNet50—were adapted using transfer learning and evaluated across different training, validation, and testing configurations. This experimental setup enabled a comparative investigation of model performance under the selected configurations.
+
+The experimental results demonstrated that EfficientNetB0, MobileNetV2, and ResNet50 achieved promising classification performance across the evaluated configurations. Their comparative evaluation revealed differences in predictive performance and inference time. ResNet50 achieved the strongest classification performance in the reported results, while EfficientNetB0 and MobileNetV2 offered alternatives with lower inference times. These findings highlight the importance of considering both classification performance and computational efficiency when selecting an architecture for a particular application.
+
+In addition to classification, the framework generates confidence scores for the available skin condition and severity labels, allowing users to examine the model's relative predictions rather than relying solely on the highest-ranked class. Grad-CAM visualizations further provide a qualitative view of the image regions associated with a prediction. Together, these features improve the transparency of the system's outputs, although neither confidence scores nor visual explanations independently establish the clinical correctness of a prediction.
+
+Overall, this research demonstrates the potential of combining transfer learning with explainable artificial intelligence for automated skin image analysis. The proposed framework may serve as a foundation for computer-aided assessment and further research into skin condition classification and severity estimation. However, broader validation, particularly using diverse real-world images and expert-annotated clinical data, is necessary before the framework can be considered for practical healthcare applications.
+
+\section{Contributions of the Research}
+
+The main contributions of this research are summarized as follows:
+
+\begin{itemize}
+    \item An explainable deep learning framework was developed for skin condition classification and severity-related label prediction.
+    
+    \item An image preprocessing pipeline was implemented to support image resizing, metadata generation, dataset preparation, partitioning, and augmentation.
+    
+    \item Three transfer learning architectures---EfficientNetB0, MobileNetV2, and ResNet50---were evaluated to compare their classification performance and computational efficiency.
+    
+    \item Multiple train-validation-test configurations were investigated to examine model performance under different data allocation strategies.
+    
+    \item Confidence scores for the available condition and severity labels were incorporated to provide more information about the model's predictions than a single predicted label alone.
+    
+    \item Grad-CAM visualization was integrated to provide qualitative explanations of the image regions associated with model predictions.
+    
+    \item Classification metrics and inference time were considered together to identify trade-offs between predictive performance and computational cost.
+\end{itemize}
+
+\section{Limitations}
+
+Despite the promising results, this study has several limitations. First, the dataset covers a limited set of skin conditions and condition-related labels. Consequently, the findings should not be interpreted as evidence that the framework can recognize the full range of dermatological diseases or severity levels encountered in clinical practice.
+
+Second, the performance of image-based classification systems can be affected by differences in skin tone, lighting, camera characteristics, image resolution, viewing angle, and image quality. The extent to which the proposed framework generalizes to these variations requires further investigation using more diverse and representative datasets.
+
+Third, the predicted condition and severity labels depend on the quality and consistency of the dataset annotations. The model's ability to distinguish between severity levels therefore requires evaluation against reliable reference labels, ideally established or reviewed by qualified dermatologists. In addition, confidence scores and Grad-CAM visualizations do not, by themselves, guarantee calibrated uncertainty or clinically valid explanations.
+
+Finally, the experimental results depend on the dataset partitioning and evaluation protocol used for each model. Fair comparisons between different train-validation-test configurations require each model to be evaluated using the appropriate held-out test data under a consistent protocol. The reported inference times may also vary with the hardware, input dimensions, batch size, and measurement procedure.
+
+Accordingly, the proposed framework should be regarded as a research prototype for computer-aided skin image analysis rather than a substitute for professional medical diagnosis. Further technical evaluation and clinical validation are necessary before practical deployment.
+
+\section{Future Work}
+
+Several directions can be explored to improve the proposed framework and assess its suitability for real-world applications.
+
+\subsection{Dataset Expansion and Generalization}
+
+Future research should expand the dataset to include a broader range of dermatological conditions, severity levels, skin tones, age groups, and imaging environments. Collecting images from multiple healthcare institutions and imaging devices would help evaluate the model's ability to generalize beyond the conditions represented in the current dataset. Expert-annotated data and clearly defined severity criteria would also improve the reliability of model evaluation.
+
+\subsection{Model Architecture and Performance Optimization}
+
+Further studies may investigate alternative architectures, including EfficientNetV2, ConvNeXt, Vision Transformers (ViTs), and hybrid convolutional neural network--transformer models. Ensemble learning could also be explored to determine whether combining predictions from multiple architectures improves classification performance. Any performance gains should be assessed alongside inference time, memory requirements, and computational cost to determine the suitability of these approaches for different deployment environments.
+
+\subsection{Enhanced Explainability and Uncertainty Estimation}
+
+The explainability component could be extended by evaluating additional techniques, such as Score-CAM, Eigen-CAM, LIME, and SHAP. A systematic comparison of these methods could help determine whether their explanations are consistent, informative, and relevant to the visual characteristics of the input images. Future work should also investigate confidence calibration and uncertainty estimation so that the system can better identify predictions for which it has limited confidence. These measures may help support safer interpretation of model outputs, although they would not replace clinical validation.
+
+\subsection{Mobile and Web-Based Deployment}
+
+Another direction is to develop a mobile or web-based application that integrates the trained model with an accessible user interface. The application could allow users to upload or capture skin images and view predicted labels, associated confidence scores, and Grad-CAM visualizations. MobileNetV2 may be a suitable candidate for resource-constrained devices because of its comparatively short inference time in the reported experiments. However, deployment decisions should be based on additional testing under realistic device and network conditions.
+
+Such an application should communicate its limitations clearly and present its outputs as preliminary, model-generated information rather than a confirmed medical diagnosis. Appropriate privacy protections and safeguards for handling user-submitted images would also be necessary.
+
+% \subsection{Longitudinal Monitoring of Skin Conditions}
+
+% Future work could explore a longitudinal monitoring feature that organizes previously analyzed images and their associated predictions over time. This would require consistent image capture procedures and evaluation of the reliability of repeated predictions. Changes in model outputs could then be presented as supplementary information for users and healthcare professionals during follow-up assessments. Because differences in lighting, camera position, and image quality can influence predictions, changes in model outputs should not be interpreted as definitive evidence that a condition has improved or worsened without appropriate clinical assessment.
+
+\subsection{Clinical Validation and Responsible Deployment}
+
+Before the framework is considered for clinical use, it should be evaluated using larger, diverse, real-world datasets collected in collaboration with hospitals and dermatology clinics. Prospective studies and independent external validation could help establish how well the system performs on data from sources not represented during training. Evaluation should include class-specific performance, errors across relevant demographic groups, calibration, and the reliability of severity-related predictions. Collaboration with dermatologists would be essential for defining clinically meaningful evaluation criteria and determining how the system could complement existing assessment procedures.
+
+\section{Final Remarks}
+
+This research investigated the use of transfer learning and explainable artificial intelligence for skin condition classification and severity-related label prediction. By combining established convolutional neural network architectures with confidence-based outputs and Grad-CAM visualizations, the proposed framework provides both predictive results and a means of inspecting the image regions associated with those results. The comparative evaluation also highlights the importance of balancing classification performance with computational efficiency. Although the findings are encouraging, further validation is required to establish generalization, explanation reliability, and clinical relevance. With these improvements, the framework could contribute to the development of responsible computer-aided tools for dermatological image analysis.

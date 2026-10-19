@@ -1,0 +1,104 @@
+\section{Introduction}
+Skin diseases are among the most common medical conditions worldwide and affect individuals of all ages. Early detection and continuous monitoring of skin conditions are essential for preventing complications and improving treatment outcomes. Recent advances in Artificial Intelligence (AI), particularly Deep Learning (DL), have significantly improved the automatic analysis of medical images. In dermatology, deep learning models have demonstrated remarkable performance in identifying skin diseases from digital images, often achieving results comparable to those of experienced clinicians.\\
+This chapter presents the theoretical background relevant to the proposed research. It discusses skin conditions and severity estimation, convolutional neural networks, transfer learning, explainable artificial intelligence, and Grad-CAM visualization. Finally, related studies and the research gap are presented to establish the motivation for the proposed framework.
+
+\section{Skin Conditions and Severity Estimation}
+Skin diseases represent a diverse group of medical conditions that affect the skin's appearance, structure, and function. They may result from infections, inflammation, allergies, burns, environmental exposure, or genetic factors. Accurate identification of these conditions is important because delayed or incorrect diagnosis may lead to disease progression and ineffective treatment.\\
+
+This research focuses on four skin condition categories:
+\begin{itemize}
+    \item Acne
+    \item Eczema
+    \item Burn
+    \item Normal Skin
+\end{itemize}
+
+Each condition exhibits distinct visual characteristics. Acne is commonly characterized by pimples, papules, pustules, and inflammation. Eczema often appears as dry, itchy, inflamed patches with varying degrees of redness. Burn injuries present different levels of tissue damage depending on their severity, while normal skin includes healthy skin conditions with variations such as dry, normal, and oily skin.\\
+Beyond identifying the skin condition, estimating its severity provides additional clinical value. Severity assessment enables healthcare professionals and patients to monitor disease progression and evaluate treatment effectiveness over time. Instead of simply identifying the disease category, a severity-aware system offers more meaningful information for long-term patient management.
+
+\section{Deep Learning for Medical Image Classification}
+Deep learning has become one of the most successful approaches for medical image analysis. Unlike traditional machine learning techniques that rely on manually engineered features, deep learning models automatically learn hierarchical feature representations directly from raw image data.\\
+Convolutional Neural Networks (CNNs) are particularly effective for image classification because they automatically learn low-level features such as edges and textures before extracting higher-level semantic information. Through multiple convolutional layers, pooling operations, and nonlinear activation functions, CNNs progressively identify complex visual patterns associated with different disease categories.\\
+Medical image classification using deep learning has been successfully applied in various healthcare domains, including radiology, pathology, ophthalmology, and dermatology. In skin image analysis, CNN-based models have shown promising performance in distinguishing multiple skin diseases using dermoscopic and clinical photographs.\\
+Despite these achievements, training deep neural networks from scratch generally requires very large annotated datasets and substantial computational resources. This limitation has encouraged researchers to adopt transfer learning techniques that leverage knowledge learned from large-scale image datasets.
+
+\section{Transfer Learning}
+Transfer learning is a deep learning technique in which knowledge acquired from one task is transferred to another related task. Instead of training a convolutional neural network from scratch, a model pre-trained on a large dataset such as ImageNet is adapted to solve a new classification problem.\\
+Pre-trained models have already learned general visual features including edges, textures, shapes, and object structures. These learned representations can be reused for medical image classification, reducing training time and improving model performance, particularly when the available medical dataset is relatively small.\\
+
+In this research, three transfer learning architectures were investigated:
+\begin{itemize}
+    \item EfficientNetB0
+    \item MobileNetV2
+    \item ResNet50
+\end{itemize}
+
+Each model was initialized using ImageNet pre-trained weights, after which a custom classification head was added. During training, transfer learning enabled the models to adapt their learned visual representations to skin condition classification while reducing computational requirements.\\
+Transfer learning has become one of the most widely adopted approaches in medical image analysis because it improves convergence speed, reduces overfitting, and achieves competitive performance even with limited annotated datasets.
+
+\section{Explainable Artificial Intelligence (XAI)}
+Although deep learning models often achieve high classification accuracy, they are frequently criticized for functioning as "black-box" systems because their decision-making processes are difficult to interpret. In medical applications, explainability is particularly important because clinicians require evidence supporting automated predictions before trusting AI-assisted diagnostic systems.\\
+Explainable Artificial Intelligence (XAI) refers to a collection of techniques designed to make artificial intelligence models more transparent and understandable. XAI enables users to identify which image regions or features contributed most significantly to a model's prediction.\\
+
+In healthcare, explainability provides several important benefits:
+\begin{itemize}
+    \item Improves clinician confidence in AI-assisted diagnosis.
+    \item Enhances transparency of automated decision-making.
+    \item Facilitates error analysis and model debugging.
+    \item Supports regulatory and ethical requirements for trustworthy artificial intelligence.
+\end{itemize}
+
+Integrating explainability into medical image classification improves the practical usefulness of deep learning systems by enabling healthcare professionals to verify that predictions are based on clinically meaningful image features rather than irrelevant background information.
+
+\section{Gradient-weighted Class Activation Mapping (Grad-CAM)}
+Gradient-weighted Class Activation Mapping (Grad-CAM) is one of the most widely used explainability techniques for convolutional neural networks. Grad-CAM generates a visual heatmap highlighting the regions of an input image that contribute most strongly to a specific class prediction.\\
+Unlike traditional visualization methods, Grad-CAM utilizes the gradients flowing into the final convolutional layer to estimate the importance of different spatial locations. The resulting heatmap is then superimposed on the original image, allowing users to observe where the model focused when making its prediction.\\
+In dermatological image analysis, Grad-CAM helps verify whether the model is attending to clinically relevant lesion regions instead of unrelated background areas. This improves the interpretability of the classification system and increases confidence in its predictions.\\
+In the proposed framework, Grad-CAM is employed after classification to visualize the regions responsible for the predicted skin condition and severity level. These visual explanations assist both researchers and healthcare professionals in understanding the behavior of the trained deep learning models.
+
+\section{Related Work}
+Recent advances in deep learning have significantly improved the automatic classification of skin diseases from clinical and dermoscopic images. Researchers have explored various convolutional neural network (CNN) architectures, transfer learning techniques, and Explainable Artificial Intelligence (XAI) methods to improve diagnostic accuracy while increasing the transparency of deep learning models.\\
+Liu et al.\cite{Liu2020} developed a deep learning system for the differential diagnosis of skin diseases using clinical images. Their study demonstrated that deep learning models can achieve dermatologist-level performance in recognizing multiple skin diseases, highlighting the potential of artificial intelligence as a clinical decision support tool. However, the proposed system primarily focused on disease classification and did not estimate the severity of skin conditions.\\
+Srinivasu et al.\cite{Srinivasu2021} proposed a skin disease classification framework using MobileNetV2 combined with Long Short-Term Memory (LSTM) networks. Their transfer learning approach achieved promising classification performance while reducing computational complexity. Nevertheless, the proposed framework concentrated solely on disease identification without providing information regarding severity levels.\\
+Goceri\cite{Goceri2021} reviewed the application of deep learning and mobile technologies in dermatology, emphasizing the growing importance of artificial intelligence in supporting dermatologists through automated diagnosis and remote healthcare services. The study highlighted the potential of mobile-based skin disease detection systems while identifying the need for more reliable and interpretable AI models.\\
+Barbieri et al.\cite{Barbieri2022} proposed an artificial intelligence framework for leprosy diagnosis using skin lesion images together with demographic and clinical information. Their work demonstrated the effectiveness of combining image analysis with additional patient information to improve diagnostic performance. However, the framework was designed specifically for leprosy and did not address generalized skin condition severity estimation.\\
+Inthiyaz et al.\cite{Inthiyaz2023} developed a deep learning-based skin disease detection framework using convolutional neural networks. Their research achieved encouraging classification performance for multiple skin diseases and demonstrated the effectiveness of transfer learning in dermatological image analysis. Similar to many previous studies, the research primarily concentrated on disease classification.\\
+Surasinghe et al.\cite{Surasinghe2023} introduced an EfficientNet-B3-based framework integrated with Grad-CAM for detecting Neglected Tropical Skin Diseases. Their model achieved approximately 91.53\% classification accuracy while providing visual explanations that highlighted clinically relevant lesion regions. The incorporation of Grad-CAM improved model transparency; however, the study focused only on disease classification rather than severity estimation.\\
+Badhon et al.\cite{Badhon2024} proposed an explainable skin disease classification framework using transfer learning and Grad-CAM visualization. The study evaluated VGG16 and VGG19 models with extensive data augmentation and achieved high classification accuracy on a balanced dataset. The Grad-CAM visualizations enhanced the interpretability of the model predictions. Despite these contributions, the framework did not estimate the severity levels of skin conditions.
+\begin{table}[htbp]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\textbf{Study} & \textbf{Transfer} & \textbf{Explainable} & \textbf{Severity} & \textbf{Multiple} \\
+ & \textbf{Learning} & \textbf{AI (Grad-CAM/XAI)} & \textbf{Estimation} & \textbf{Models Evaluated} \\
+\hline
+Liu et al. (2020)~\cite{Liu2020} & $\checkmark$ & $\times$ & $\times$ & $\times$ \\
+\hline
+Srinivasu et al. (2021)~\cite{Srinivasu2021} & $\checkmark$ & $\times$ & $\times$ & $\times$ \\
+\hline
+Surasinghe et al. (2023)~\cite{Surasinghe2023} & $\checkmark$ & $\checkmark$ & $\times$ & $\times$ \\
+\hline
+Badhon et al. (2024)~\cite{Badhon2024} & $\checkmark$ & $\checkmark$ & $\times$ & $\checkmark$ \\
+\hline
+\textbf{Proposed Framework} & $\checkmark$ & $\checkmark$ & $\checkmark$ & $\checkmark$ \\
+\hline
+\end{tabular}%
+}
+\caption{Comparative Analysis of Related Studies and the Proposed Framework}
+\label{tab:comparative_analysis}
+\end{table}
+
+Table \ref{tab:comparative_analysis} summarizes the key characteristics of the reviewed studies and compares them with the proposed framework. Most existing studies employ transfer learning for skin disease classification, and some integrate Explainable Artificial Intelligence techniques such as Grad-CAM to improve model interpretability. However, the majority of these approaches focus only on disease classification and do not estimate the severity of skin conditions. Furthermore, only a limited number of studies compare multiple transfer learning architectures under identical experimental settings. The proposed framework addresses these limitations by integrating transfer learning, severity estimation, Grad-CAM-based explainability, and comparative evaluation of multiple deep learning models within a unified system.\\
+Overall, existing studies demonstrate that transfer learning significantly improves skin disease classification performance and that explainability techniques such as Grad-CAM enhance model transparency. However, most previous research has concentrated on identifying disease categories rather than simultaneously estimating disease severity within an explainable deep learning framework.
+
+\section{Research Gap}
+A review of the existing literature reveals several important research gaps.\\
+First, most existing deep learning studies focus primarily on identifying the type of skin disease. Although these approaches achieve high classification accuracy, they generally provide only the predicted disease category and do not estimate the severity of the detected condition. Consequently, users and healthcare professionals receive limited information regarding the progression or current stage of the skin condition.\\
+Second, many existing explainable AI studies integrate Grad-CAM or similar visualization techniques to improve model interpretability. While these methods successfully highlight the image regions responsible for model predictions, they are generally applied only to disease classification tasks and not to severity estimation.\\
+Third, relatively few studies evaluate multiple transfer learning architectures under identical experimental settings. As a result, selecting the most suitable model for balancing classification performance and computational efficiency remains challenging.\\
+Finally, existing research rarely considers the practical application of severity estimation for long-term treatment monitoring. A system capable of predicting both the skin condition and its severity could assist users and healthcare professionals in observing whether a condition is improving, remaining stable, or worsening over time.\\
+To address these limitations, this research proposes an explainable transfer learning-based framework that simultaneously classifies multiple skin conditions and estimates their corresponding severity or condition levels. Three state-of-the-art transfer learning models—EfficientNetB0, MobileNetV2, and ResNet50—are comparatively evaluated using a common experimental framework. Furthermore, Grad-CAM visualization is integrated to improve the transparency of model predictions. The proposed framework aims to provide more informative decision support by combining classification, severity estimation, and explainability within a unified system.
+
+\section{Chapter Summary}
+This chapter presented the theoretical background necessary for understanding the proposed research. It discussed skin conditions and severity estimation, deep learning for medical image classification, transfer learning, Explainable Artificial Intelligence, and Grad-CAM visualization. These concepts provide the foundation for the proposed explainable transfer learning framework developed in this study. The related work and research gap will further establish the motivation for the proposed methodology. The next chapter describes the research methodology, including dataset preparation, model development, training procedures, explainability, and performance evaluation.
